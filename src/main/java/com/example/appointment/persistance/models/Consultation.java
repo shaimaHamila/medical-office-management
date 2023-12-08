@@ -20,7 +20,9 @@ public class Consultation {
     private LocalDateTime dateCons;
     private String recapCons;
 
-    @OneToOne
+    //If we want the relationship to be bidirectional (can access to consultation from rendervous and you can access to rendervou from consultation) add this lines
+    //If you want it to be unidirectional just remove these lines
+    @OneToOne(mappedBy = "consultation") // mapped by (use the name you set in the other table)
     private Rendezvous Rendezvous;
 
 }

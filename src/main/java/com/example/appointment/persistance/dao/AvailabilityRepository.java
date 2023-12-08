@@ -1,9 +1,10 @@
 package com.example.appointment.persistance.dao;
 
-import com.example.appointment.persistance.models.Medecin;
+import com.example.appointment.persistance.models.Availability;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MedecinRepository extends JpaRepository<Medecin, Long> {
+public interface AvailabilityRepository extends JpaRepository<Availability, Long> {
+
 }

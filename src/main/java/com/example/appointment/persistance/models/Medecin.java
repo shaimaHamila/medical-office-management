@@ -1,5 +1,7 @@
 package com.example.appointment.persistance.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,11 +22,15 @@ public class Medecin {
     private Long id;
     private String nom;
     private String email;
+
+    @ManyToOne()
+    @JoinColumn(name = "fk_speciality_id", nullable = false)
+    private Speciality speciality;
+
     @OneToMany(mappedBy = "medecin", cascade = CascadeType.REMOVE)
     private List<Rendezvous> listrdv;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "speciality_id", nullable = false)
-    private Speciality specialities;
-  
+
+    @ManyToMany(mappedBy = "medecins")
+    private List<Availability> availabilities;
+
 }

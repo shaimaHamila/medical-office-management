@@ -18,10 +18,17 @@ public class Rendezvous {
     private Long id;
     private LocalDateTime dateRDV;
     private LocalDateTime heureRDV;
+
     @ManyToOne
+    @JoinColumn(name = "fk_patient_id")
     private Patient patient;
+
     @ManyToOne
+    @JoinColumn(name = "fk_medecin_id")
     private Medecin medecin;
-    @OneToOne(mappedBy = "Rendezvous")
+
+    //In this case he will create a new attribute for the foreign key : by default the name of the attribute is the other entity class name _ the name of the id
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_consultation_id") //Use JoinColumn to rename the new attribute
     private Consultation consultation;
 }
